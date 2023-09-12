@@ -7,6 +7,32 @@ function f_post {
 
   $APT install --no-install-recommends fwupd secureboot-db
 
+  # Correct the form of default kernel command line in GRUB
+if grep -q '^\s*GRUB_CMDLINE_LINUX=.*audit=.*"'  '/etc/default/grub' ; then
+       # modify the GRUB command-line if an audit= arg already exists
+       sed -i "s/\(^\s*GRUB_CMDLINE_LINUX=\".*\)audit=[^[:space:]]\+\(.*\"\)/\1audit=1\2/"  '/etc/default/grub'
+# Add to already existing GRUB_CMDLINE_LINUX parameters
+elif grep -q '^\s*GRUB_CMDLINE_LINUX='  '/etc/default/grub' ; then
+       # no audit=arg is present, append it
+       sed -i "s/\(^\s*GRUB_CMDLINE_LINUX=\".*\)\"/\1 audit=1\"/"  '/etc/default/grub'
+# Add GRUB_CMDLINE_LINUX parameters line
+else
+       echo "GRUB_CMDLINE_LINUX=\"audit=1\"" >> '/etc/default/grub'
+fi
+
+# Correct the form of default kernel command line in GRUB
+if grep -q '^\s*GRUB_CMDLINE_LINUX=.*audit_backlog_limit=.*"'  '/etc/default/grub' ; then
+       # modify the GRUB command-line if an audit_backlog_limit= arg already exists
+       sed -i "s/\(^\s*GRUB_CMDLINE_LINUX=\".*\)audit_backlog_limit=[^[:space:]]\+\(.*\"\)/\1audit_backlog_limit=8192\2/"  '/etc/default/grub'
+# Add to already existing GRUB_CMDLINE_LINUX parameters
+elif grep -q '^\s*GRUB_CMDLINE_LINUX='  '/etc/default/grub' ; then
+       # no audit_backlog_limit=arg is present, append it
+       sed -i "s/\(^\s*GRUB_CMDLINE_LINUX=\".*\)\"/\1 audit_backlog_limit=8192\"/"  '/etc/default/grub'
+# Add GRUB_CMDLINE_LINUX parameters line
+else
+       echo "GRUB_CMDLINE_LINUX=\"audit_backlog_limit=8192\"" >> '/etc/default/grub'
+fi
+
   if [[ $VERBOSE == "Y" ]]; then
     update-grub
     ((SCRIPT_COUNT++))
