@@ -1,7 +1,7 @@
 function f_sudo {
   echo "[$SCRIPT_COUNT] sudo configuration"
 
-  sed -i -e 's/#includedir /etc/sudoers.d/includedir /etc/sudoers.d/g' /etc/sudoers
+  #sed -i -e 's/#includedir /etc/sudoers.d/includedir /etc/sudoers.d/g' /etc/sudoers
 
   if ! grep -qER '^Defaults.*use_pty$' /etc/sudo*; then
     echo "Defaults use_pty" > /etc/sudoers.d/011_use_pty
