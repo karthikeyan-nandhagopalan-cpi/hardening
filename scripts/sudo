@@ -31,7 +31,7 @@ function f_sudo {
 
   if ! grep -qER '^auth required pam_wheel.so' /etc/pam.d/su; then
     echo "auth required pam_wheel.so use_uid group=sudo" >> /etc/pam.d/su
-    echo "auth required pam_wheel.so use_uid group=sugroup" >> /etc/pam.d/su
+   # echo "auth required pam_wheel.so use_uid group=sugroup" >> /etc/pam.d/su
   fi
 
   if [[ $VERBOSE == "Y" ]]; then
