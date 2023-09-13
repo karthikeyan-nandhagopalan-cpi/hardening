@@ -31,7 +31,7 @@ function f_package_install {
 
   local PACKAGE_INSTALL
 
-  PACKAGE_INSTALL="auditd acct aide-common cracklib-runtime debsums gnupg2 haveged libpam-pwquality libpam-tmpdir needrestart openssh-server iptables-persistent postfix psad rkhunter sysstat systemd-coredump tcpd chrony update-notifier-common vlock $APPARMOR $AUDITD $VM"
+  PACKAGE_INSTALL="acct aide-common cracklib-runtime debsums gnupg2 haveged libpam-pwquality libpam-tmpdir needrestart openssh-server iptables-persistent postfix psad rkhunter sysstat systemd-coredump tcpd chrony update-notifier-common vlock $APPARMOR $AUDITD $VM"
 
   for deb_install in $PACKAGE_INSTALL; do
     apt update
