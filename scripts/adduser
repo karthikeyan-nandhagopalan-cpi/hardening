@@ -9,10 +9,10 @@ function f_adduser {
   sed -i 's/^SHELL=.*/SHELL=\/bin\/false/' "$USERADD"
   sed -i 's/^# INACTIVE=.*/INACTIVE=30/' "$USERADD"
 
-  #group add sugroup
-  #for user in $(awk -F':' '{ if ($3 >= 1000 && $3 != 65534) print $1}' /etc/passwd); do
-  # mkhomedir_helper $user 0077;
-  #done
+  group add sugroup
+  for user in $(awk -F':' '{ if ($3 >= 1000 && $3 != 65534) print $1}' /etc/passwd); do
+   mkhomedir_helper $user 0077;
+  done
 
 
   awk -F ':' '{if($3 >= 1000 && $3 <= 65000) print $6}' /etc/passwd | while read -r userhome; do

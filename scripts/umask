@@ -17,6 +17,6 @@ function f_umask {
     echo -e 'TMOUT=600\nreadonly TMOUT\nexport TMOUT' > '/etc/profile.d/autologout.sh'
     chmod +x /etc/profile.d/autologout.sh
   fi
-  #echo "umask 027" >> /etc/csh.cshrc
+  echo "umask 027" >> /etc/csh.cshrc
   ((SCRIPT_COUNT++))
 }
