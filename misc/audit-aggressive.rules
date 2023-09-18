@@ -48,19 +48,17 @@
 -a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=1000 -F auid!=-1 -k actions
 -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k actions
 -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k actions
--a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=-1 -k perm_mod
 -a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=-1 -k actions
 -a always,exit -F arch=b32 -S removexattr -F auid>=1000 -F auid!=-1 -k actions
--a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=1000 -F auid!=-1 -k actions
+-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
 -a always,exit -F arch=b64 -C euid!=uid -F euid=0 -Fauid>=1000 -F auid!=-1 -S execve -k actions
 -a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=1000 -F auid!=-1 -k actions
 -a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=1000 -F auid!=-1 -k actions
 -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k actions
 -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k actions
--a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=-1 -k perm_mod
 -a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=-1 -k actions
 -a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=-1 -k actions
--a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
 
 -a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=-1 -k delete
 -a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=-1 -k delete
@@ -80,8 +78,22 @@
 -a always,exit -F arch=b32 -S lchown -F auid>=1000 -F auid!=unset -F key=perm_mod
 -a always,exit -F arch=b64 -S lchown -F auid>=1000 -F auid!=unset -F key=perm_mod
 
--a always,exit -F arch=ARCH -S rename -F auid>=1000 -F auid!=unset -F key=delete
--a always,exit -F arch=ARCH -S renameat -F auid>=1000 -F auid!=unset -F key=delete
+
+-a always,exit -F arch=b32 -S fremovexattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b64 -S fremovexattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b32 -S fsetxattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b64 -S fsetxattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b32 -S lremovexattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b64 -S lremovexattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b32 -S lsetxattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b64 -S lsetxattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b32 -S removexattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b64 -S removexattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b32 -S setxattr -F auid=0 -F key=perm_mod
+-a always,exit -F arch=b64 -S setxattr -F auid=0 -F key=perm_mod
+
+
+
 -a always,exit -F arch=ARCH -S unlink -F auid>=1000 -F auid!=unset -F key=delete
 -a always,exit -F arch=ARCH -S unlinkat -F auid>=1000 -F auid!=unset -F key=delete
 
