@@ -44,6 +44,7 @@ function f_sshdconfig {
   sed -i 's/.*Subsystem.*sftp.*/Subsystem sftp internal-sftp/' "$SSHDCONF"
   sed -i 's/^#.*Compression.*/Compression no/' "$SSHDCONF"
   sed -i "s/.*Port.*/Port $SSH_PORT/" "$SSHDCONF"
+  sed -i "s/#PermitEmptyPasswords.*/PermitEmptyPasswords no/" "$SSHDCONF"
 
   echo "" >> "$SSHDCONF"
 
