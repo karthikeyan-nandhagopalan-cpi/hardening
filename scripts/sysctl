@@ -13,7 +13,7 @@ function f_sysctl {
     echo "net.ipv6.conf.$n.accept_ra_rtr_pref = 0" >> "$SYSCTL"
   done
 
-  sed -i -e "s/rp_filter=.*/rp_filter=1/" *
+  sed -i -e "s/rp_filter=.*/rp_filter=1/" /etc/sysctl.d/*
 
   chmod 0600 "$SYSCTL"
   systemctl restart systemd-sysctl
