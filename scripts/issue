@@ -27,9 +27,8 @@ formatted=$(echo "$login_banner_text" | fold -sw 80)
 cat <<EOF > $f
 $formatted
 EOF
-
-
   chmod a-x /etc/update-motd.d/*
+  done
 
   ((SCRIPT_COUNT++))
 }

@@ -63,10 +63,14 @@
 -a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=-1 -k delete
 -a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=-1 -k delete
 
--a always,exit -F arch=ARCH -S rename -F auid>=1000 -F auid!=unset -F key=delete
--a always,exit -F arch=ARCH -S renameat -F auid>=1000 -F auid!=unset -F key=delete
--a always,exit -F arch=ARCH -S unlink -F auid>=1000 -F auid!=unset -F key=delete
--a always,exit -F arch=ARCH -S unlinkat -F auid>=1000 -F auid!=unset -F key=delete
+-a always,exit -F arch=b32 -S rename -F auid>=1000 -F auid!=unset -F key=delete
+-a always,exit -F arch=b64 -S rename -F auid>=1000 -F auid!=unset -F key=delete
+-a always,exit -F arch=b32 -S renameat -F auid>=1000 -F auid!=unset -F key=delete
+-a always,exit -F arch=b64 -S renameat -F auid>=1000 -F auid!=unset -F key=delete
+-a always,exit -F arch=b32 -S unlink -F auid>=1000 -F auid!=unset -F key=delete
+-a always,exit -F arch=b64 -S unlink -F auid>=1000 -F auid!=unset -F key=delete
+-a always,exit -F arch=b32 -S unlinkat -F auid>=1000 -F auid!=unset -F key=delete
+-a always,exit -F arch=b64 -S unlinkat -F auid>=1000 -F auid!=unset -F key=delete
 
 
 -a always,exit -F arch=b32 -S chmod -F auid>=1000 -F auid!=unset -F key=perm_mod
@@ -98,9 +102,6 @@
 -a always,exit -F arch=b32 -S setxattr -F auid=0 -F key=perm_mod
 -a always,exit -F arch=b64 -S setxattr -F auid=0 -F key=perm_mod
 
-
--a always,exit -F arch=ARCH -S unlink -F auid>=1000 -F auid!=unset -F key=delete
--a always,exit -F arch=ARCH -S unlinkat -F auid>=1000 -F auid!=unset -F key=delete
 
 -a always,exit -F arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -F key=access
 -a always,exit -F arch=b32 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=unset -F key=access
