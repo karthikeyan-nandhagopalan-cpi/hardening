@@ -5,5 +5,9 @@ function f_users {
     userdel -r "$users" 2> /dev/null
   done
 
+  for user in $(awk -F':' '{ if ($3 >= 1000 && $3 != 65534) print $1}' /etc/passwd); do
+      mkhomedir_helper $user 0077;
+  done
+
   ((SCRIPT_COUNT++))
 }
