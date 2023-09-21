@@ -15,7 +15,8 @@ function f_sshdconfig {
       mkdir -p "$INCLUDEDIR"
     fi
 
-    SSHDCONF="$INCLUDEDIR/hardening.conf"
+    #SSHDCONF="$INCLUDEDIR/hardening.conf"
+    SSHDCONF="/etc/ssh/sshd_config"
 
     cp "$SSHDFILE" "$SSHDCONF"
 
