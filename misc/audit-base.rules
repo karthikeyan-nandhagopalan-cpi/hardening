@@ -1,7 +1,7 @@
 # su and sudo
 -w /bin/su -p x -k actions
 -w /etc/sudoers -p wa -k actions
--w /etc/sudoers.d -p wa -k actions
+-w /etc/sudoers.d/ -p wa -k actions
 -w /usr/bin/sudo -p x -k actions
 
 -a always,exit -S all -F dir=/home/ -F uid=0 -C auid!=obj_uid -k admin-user-home

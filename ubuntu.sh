@@ -131,6 +131,7 @@ function main {
   f_pre
   f_kernel
   f_firewall
+  f_chrony
   f_disablenet
   f_disablefs
   f_disablemod
