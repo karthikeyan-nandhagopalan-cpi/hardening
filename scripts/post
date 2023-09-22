@@ -16,9 +16,11 @@ function f_post {
 
   if grep -q superusers /etc/grub.d/40_custom; then
     echo "grub password already set"
+    update-grub
     else
     echo 'set superusers="chargepoint"' >> /etc/grub.d/40_custom
     echo 'password_pbkdf2 chargepoint grub.pbkdf2.sha512.10000.18D48D2EB58B2ADF8DCDF4CBFDE2B1D11DC2F8E8F5D1AF233DC91061E2EF17FEBA9BE2B733E15DD5B6E90E0949200276D95948A68CF3D8C8F80278B38F39E943.A246413212521A5A41DEA9C9B4118A24A80399A4FC5EB1451DB86809DC1E84B583B4394A2F60BE01B1BB0A02B74062FFB724F50A14AB5EAE32E600E0010C4E55' >> /etc/grub.d/40_custom
+    update-grub
     fi
 
     # Correct the form of default kernel command line in GRUB
