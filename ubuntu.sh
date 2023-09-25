@@ -181,6 +181,7 @@ function main {
   f_aptget_noexec
   f_aptget_clean
   f_systemddelta
+  f_crowdstrike
   f_post
   f_checkreboot
 
