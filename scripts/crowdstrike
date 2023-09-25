@@ -3,6 +3,7 @@ function f_crowdstrike {
 #!/bin/bash
 export FALCON_CLIENT_ID=${FALCON_CLIENT_ID}
 export FALCON_CLIENT_SECRET=${FALCON_CLIENT_SECRET}
+printenv
 curl -L https://raw.githubusercontent.com/crowdstrike/falcon-scripts/main/bash/install/falcon-linux-install.sh | bash
 bash falcon-linux-install.sh
 ((SCRIPT_COUNT++))

@@ -89,6 +89,8 @@ function main {
   readonly DISABLEMOD
   readonly DISABLENET
   readonly FAILLOCKCONF
+  readonly FALCON_CLIENT_ID
+  readonly FALCON_CLIENT_SECRET
   readonly FW_ADMIN
   readonly JOURNALDCONF
   readonly KEEP_SNAPD
@@ -105,6 +107,7 @@ function main {
   readonly RESOLVEDCONF
   readonly RKHUNTERCONF
   readonly RSYSLOGCONF
+  readonly ROOT_PASSWORD
   readonly SECURITYACCESS
   readonly SERVERIP
   readonly SSHDFILE
