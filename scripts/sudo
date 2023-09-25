@@ -7,6 +7,8 @@ function f_sudo {
     echo "Defaults use_pty" > /etc/sudoers.d/011_use_pty
   fi
 
+  echo 'Defaults logfile="/var/log/sudo.log"' > /etc/sudoers
+
   if ! grep -qER '^Defaults.*logfile' /etc/sudo*; then
     echo 'Defaults logfile="/var/log/sudo.log"' > /etc/sudoers.d/012_logfile
   fi

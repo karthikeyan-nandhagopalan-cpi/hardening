@@ -131,10 +131,10 @@ function main {
   f_pre
   f_kernel
   f_firewall
-  f_chrony
   f_disablenet
   f_disablefs
   f_disablemod
+  f_package_install
   f_systemdconf
   f_resolvedconf
   f_logindconf
@@ -152,7 +152,6 @@ function main {
   f_limitsconf
   f_adduser
   f_rootaccess
-  f_package_install
   f_psad
   f_coredump
   f_usbguard
@@ -178,6 +177,7 @@ function main {
   f_aa_enforce
   f_aide_post
   f_aide_timer
+  f_chrony
   f_aptget_noexec
   f_aptget_clean
   f_systemddelta
