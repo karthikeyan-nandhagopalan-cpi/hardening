@@ -200,6 +200,7 @@ function f_sshdconfig {
     systemctl status sshd.service --no-pager
     echo
   fi
+  journalctl --no-pager -xeu ssh.service
 
   ((SCRIPT_COUNT++))
 }
