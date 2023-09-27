@@ -108,9 +108,11 @@ function f_sshdconfig {
   fi
 
   if ! grep -q "^Ciphers" "$SSHDCONF" 2> /dev/null; then
-  echo 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc,rijndael-cbc@lysator.liu.se' >> "$SSHDCONF"
+  #echo 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc,rijndael-cbc@lysator.liu.se' >> "$SSHDCONF"
+  echo 'Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr' >> "$SSHDCONF"
   else
-   sed -i "s/^Ciphers.*$/Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc,rijndael-cbc@lysator.liu.se/" "$SSHDCONF"
+   #sed -i "s/^Ciphers.*$/Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc,rijndael-cbc@lysator.liu.se/" "$SSHDCONF"
+   sed -i "s/^Ciphers.*$/Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr/" "$SSHDCONF"
   fi
 
 
