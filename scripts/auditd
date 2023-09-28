@@ -7,8 +7,13 @@ function f_auditd {
 
   sed -i 's/^action_mail_acct =.*/action_mail_acct = root/' "$AUDITDCONF"
   sed -i 's/^admin_space_left_action = .*/admin_space_left_action = halt/' "$AUDITDCONF"
-  sed -i 's/^max_log_file_action =.*/max_log_file_action = rotate/' "$AUDITDCONF"
   sed -i 's/^space_left_action =.*/space_left_action = email/' "$AUDITDCONF"
+
+  if ! grep jammy /etc/os-release; then
+  sed -i 's/^max_log_file_action =.*/max_log_file_action = rotate/' "$AUDITDCONF"
+  else
+  sed -i 's/^max_log_file_action =.*/max_log_file_action = keep_logs/' "$AUDITDCONF"
+  fi
 
   if ! grep -q 'audit=1' /proc/cmdline; then
     echo "GRUB_CMDLINE_LINUX=\"\$GRUB_CMDLINE_LINUX audit=1 audit_backlog_limit=8192\"" > "$DEFAULTGRUB/99-hardening-audit.cfg"

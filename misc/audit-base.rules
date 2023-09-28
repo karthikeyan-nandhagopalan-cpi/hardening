@@ -3,6 +3,7 @@
 -w /etc/sudoers -p wa -k actions
 -w /etc/sudoers.d/ -p wa -k actions
 -w /usr/bin/sudo -p x -k actions
+-w /var/log/sudo.log -p wa -k maintenance
 
 -a always,exit -S all -F dir=/home/ -F uid=0 -C auid!=obj_uid -k admin-user-home
 
@@ -64,6 +65,7 @@
 
 # SELinux configuration
 -w /etc/selinux -p wa -k mac-policy
+-w /etc/selinux/ -p wa -k MAC-policy
 
 # Postfix configuration
 -w /etc/aliases -p wa -k mail

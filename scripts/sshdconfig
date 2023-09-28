@@ -117,9 +117,10 @@ function f_sshdconfig {
 
 
   if ! grep -q "^Macs" "$SSHDCONF" 2> /dev/null; then
-  echo 'Macs hmac-sha2-512,hmac-sha2-256,hmac-sha1,hmac-sha1-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com' >> "$SSHDCONF"
+  #echo 'Macs hmac-sha2-512,hmac-sha2-256,hmac-sha1,hmac-sha1-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com' >> "$SSHDCONF"
+  echo 'Macs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256' >> "$SSHDCONF"
    else
-   sed -i  's/^Macs.*$/Macs hmac-sha2-512,hmac-sha2-256,hmac-sha1,hmac-sha1-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com' >> "$SSHDCONF"
+   sed -i  's/^Macs.*$/Macs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256' >> "$SSHDCONF"
   fi
 
 
