@@ -43,14 +43,14 @@ function f_package_install {
     systemctl enable sysstat
   fi
 
+      if ! grep jammy /etc/os-release; then
+          echo "no new packages to install"
+      else
+          $APT install --no-install-recommends  systemd-journal-remote systemd-timesyncd
+      fi
+
   ((SCRIPT_COUNT++))
 }
-
-    if ! grep jammy /etc/os-release; then
-        echo "no new packages to install"
-    else
-        $APT install --no-install-recommends  systemd-journal-remote systemd-timesyncd
-    fi
 
 
 function f_package_remove {
