@@ -54,7 +54,7 @@ function f_fstab {
     done
 
     sed -i '/[[:space:]]\/tmp[[:space:]]/d' /etc/fstab
-    sed -i "s/\(\/var\)/\1,nosuid/" /etc/fstab
+    sed -i "/ \/var ext4 /s/defaults/defaults,nosuid/" /etc/fstab
     ln -s /etc/systemd/system/tmp.mount /etc/systemd/system/default.target.wants/tmp.mount
     sed -i 's/Options=.*/Options=mode=1777,strictatime,noexec,nodev,nosuid/' /etc/systemd/system/tmp.mount
 
