@@ -8,8 +8,8 @@ function f_post {
   $APT install --no-install-recommends fwupd secureboot-db
 
    #### securing single-user mode ###
-  sed -i "s/ExecStart=.*/ExecStart=-/usr/sbin/sulogin/" /lib/systemd/system/rescue.service
-  sed -i "s/ExecStart=.*/ExecStart=-/usr/sbin/sulogin/" /lib/systemd/system/emergency.service
+  sed -i "s/ExecStart=.*/ExecStart=-\/usr\/sbin\/sulogin/" /lib/systemd/system/rescue.service
+  sed -i "s/ExecStart=.*/ExecStart=-\/usr\/sbin\/sulogin/" /lib/systemd/system/emergency.service
   systemctl daemon-reload
  #### securing single-user mode ###
 
