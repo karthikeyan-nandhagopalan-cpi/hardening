@@ -69,6 +69,9 @@ function f_aide_post {
   echo "[$SCRIPT_COUNT] Running Aide, this will take a while"
 
   aideinit --yes
+  if [ -f /var/lib/aide/aide.db.new ]; then
+  cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+  fi
 
   ((SCRIPT_COUNT++))
 }
