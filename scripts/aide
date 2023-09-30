@@ -68,10 +68,35 @@ function f_aide {
 function f_aide_post {
   echo "[$SCRIPT_COUNT] Running Aide, this will take a while"
 
-  aideinit --yes
-  if [ -f /var/lib/aide/aide.db.new ]; then
-  cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db
-  fi
+if grep jammy /etc/os-release; then
+# Remediation is applicable only in certain platforms
+if [ ! -f /.dockerenv ] && [ ! -f /run/.containerenv ]; then
+
+DEBIAN_FRONTEND=noninteractive apt-get install -y "aide"
+
+AIDE_CONFIG=/etc/aide/aide.conf
+DEFAULT_DB_PATH=/var/lib/aide/aide.db
+
+# Fix db path in the config file, if necessary
+if ! grep -q '^database=file:' ${AIDE_CONFIG}; then
+    # replace_or_append gets confused by 'database=file' as a key, so should not be used.
+    #replace_or_append "${AIDE_CONFIG}" '^database=file' "${DEFAULT_DB_PATH}" '@CCENUM@' '%s:%s'
+    echo "database=file:${DEFAULT_DB_PATH}" >> ${AIDE_CONFIG}
+fi
+
+# Fix db out path in the config file, if necessary
+if ! grep -q '^database_out=file:' ${AIDE_CONFIG}; then
+    echo "database_out=file:${DEFAULT_DB_PATH}.new" >> ${AIDE_CONFIG}
+fi
+
+/usr/sbin/aideinit -y -f
+
+else
+    >&2 echo 'Remediation is not applicable, nothing was done'
+fi
+else
+aideinit --yes
+fi
 
   ((SCRIPT_COUNT++))
 }
