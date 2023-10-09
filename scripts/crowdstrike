@@ -8,5 +8,6 @@ curl -L https://raw.githubusercontent.com/crowdstrike/falcon-scripts/main/bash/i
 bash falcon-linux-install.sh
 sleep 5
 /opt/CrowdStrike/falconctl -d -f --aid
+/opt/CrowdStrike/falconctl -s --cid=/opt/CrowdStrike/falconctl -s --cid=
 ((SCRIPT_COUNT++))
 }
