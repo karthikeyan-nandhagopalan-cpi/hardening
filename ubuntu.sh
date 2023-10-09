@@ -91,6 +91,7 @@ function main {
   readonly FAILLOCKCONF
   readonly FALCON_CLIENT_ID
   readonly FALCON_CLIENT_SECRET
+  readonly FALCON_CUSTOMER_ID
   readonly FW_ADMIN
   readonly JOURNALDCONF
   readonly KEEP_SNAPD
