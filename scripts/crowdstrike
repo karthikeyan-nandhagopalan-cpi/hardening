@@ -6,5 +6,7 @@ export FALCON_CLIENT_SECRET=${FALCON_CLIENT_SECRET}
 printenv
 curl -L https://raw.githubusercontent.com/crowdstrike/falcon-scripts/main/bash/install/falcon-linux-install.sh | bash
 bash falcon-linux-install.sh
+sleep 5
+/opt/CrowdStrike/falconctl -d -f --aid
 ((SCRIPT_COUNT++))
 }
